@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/observable/timer';
+//import { Subscription } from 'rxjs/subscription';
 
 @Component({
   selector: 'my-app',
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppComponent {
   cols: any[];
   dataMarts: any[];
-  sub: Subscription;
+  //sub: Subscription;
   first = 0;
 
   constructor() {}
@@ -26,10 +26,9 @@ export class AppComponent {
     ];
 
     this.getDataFromApi();
-
-    this.sub = Observable.interval(3000).subscribe((val) => {
+    setInterval(() => {
       this.getDataFromApi();
-    });
+    }, 3000);
   }
 
   getDataFromApi() {
